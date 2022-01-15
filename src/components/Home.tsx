@@ -27,8 +27,8 @@ const Home: React.FC = () => {
 
   console.log({
     query: { todos, loading, error}, 
-    add: {loading: isAddTodoLoading, error:isAddTodoError }, 
-    toggle: {loading: isToggleLoading, error:isToggleError }
+    add: { loading: isAddTodoLoading, error:isAddTodoError }, 
+    toggle: { loading: isToggleLoading, error:isToggleError }
   });
   
   return (
