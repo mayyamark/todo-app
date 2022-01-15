@@ -25,6 +25,12 @@ const Home: React.FC = () => {
     return <ErrorPage />;
   }
 
+  console.log({
+    query: { todos, loading, error}, 
+    add: {loading: isAddTodoLoading, error:isAddTodoError }, 
+    toggle: {loading: isToggleLoading, error:isToggleError }
+  });
+  
   return (
     <Box 
       sx={{ 
