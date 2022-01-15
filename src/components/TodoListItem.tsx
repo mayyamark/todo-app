@@ -1,12 +1,12 @@
 import React from "react";
 import { Todo, ToggleComplete } from "../types";
 
-interface TodoListItemProps {
+interface IProps {
   todo: Todo;
   toggleComplete: ToggleComplete;
 }
 
-export const TodoListItem: React.FC<TodoListItemProps> = ({
+export const TodoListItem: React.FC<IProps> = ({
   todo,
   toggleComplete
 }) => {
