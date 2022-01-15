@@ -16,6 +16,7 @@ export const TodoListItem: React.FC<IProps> = ({
         <input
           type="checkbox"
           onChange={() => toggleComplete(todo)}
+          // onChange={toggleComplete} // This won't work here, because toggleComplete expects an argument => we pass arguments via callbacks
           checked={todo.complete}
         />
         {todo.text}
