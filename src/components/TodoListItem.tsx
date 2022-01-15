@@ -25,6 +25,7 @@ export const TodoListItem: React.FC<IProps> = ({
             <Checkbox
               checked={todo.complete}
               onChange={() => toggleComplete(todo)}
+              // onChange={toggleComplete} // This won't work here, because toggleComplete expects an argument => we pass arguments via callbacks
             />
           }
           label={todo.text}
