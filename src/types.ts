@@ -4,6 +4,6 @@ export interface Todo {
   complete: boolean;
 };
 
-export type ToggleComplete = (selectedTodo: Todo) => void;
+export type ToggleComplete = ({ variables, refetchQueries } : { variables: { id: number } ; refetchQueries: string[] }) => void;
 
-export type AddTodo = (newTodo: string) => void;
+export type AddTodo = ({ variables, refetchQueries } : { variables: { text: string } ; refetchQueries: string[] }) => void;

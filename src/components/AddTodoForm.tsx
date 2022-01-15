@@ -6,10 +6,11 @@ import React, { ChangeEvent, useState } from "react";
 import { AddTodo } from "../types";
 
 interface IProps {
+  isDisabled: boolean;
   addTodo: AddTodo;
 }
 
-export const AddTodoForm: React.FC<IProps> = ({ addTodo }) => {
+export const AddTodoForm: React.FC<IProps> = ({ isDisabled, addTodo }) => {
   const [newTodo, setNewTodo] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,20 +18,28 @@ export const AddTodoForm: React.FC<IProps> = ({ addTodo }) => {
   };
 
   const handleAddTodo = () => {
-    addTodo(newTodo);
+    addTodo({ 
+      variables: { text: newTodo },
+      refetchQueries: ['GetTodos']
+    });
+
     setNewTodo("");
   };
 
   return (
-    <FormControl 
+    <FormControl
+      disabled={isDisabled}
       sx={{ 
         width: "100%",
         marginBottom: 2 // 16px
-      }}>
-      <Box sx={{ 
+      }}
+    >
+      <Box 
+        sx={{ 
           display: "flex",
           justifyContent: "center"
-      }}>
+        }}
+      >
         <OutlinedInput 
           sx={{ 
             width: "100%",
@@ -44,11 +53,12 @@ export const AddTodoForm: React.FC<IProps> = ({ addTodo }) => {
               handleAddTodo();
             }
           }}
-          />
+        />
         <Button 
           variant="contained" 
           onClick={handleAddTodo}
-          >
+          disabled={isDisabled}
+        >
           Add Todo
         </Button>
       </Box>

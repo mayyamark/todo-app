@@ -1,45 +1,51 @@
 import Box from "@mui/material/Box";
-import React, { useState } from "react";
-import { initialTodos } from "../initialTodos";
-import { AddTodo, Todo, ToggleComplete } from "../types";
+import CircularProgress from '@mui/material/CircularProgress';
+import React from "react";
+import useHooks from "../hooks/useHooks";
 import { AddTodoForm } from "./AddTodoForm";
+import ErrorPage from "./ErrorPage";
 import { TodoList } from "./TodoList";
 
 const Home: React.FC = () => {
-  const [todos, setTodos] = useState<Array<Todo>>(initialTodos);
+  const { useQuery, useAddTodoMutation, useToggleCompleteMutation } = useHooks();
 
-  const toggleComplete: ToggleComplete = (selectedTodo: Todo) => {
-    const updatedTodos = todos.map((todo: Todo) => {
-      if (todo.id === selectedTodo.id) {
-        return { ...todo, complete: !todo.complete };
-      }
-      return todo;
-    });
+  const { data: todos, loading, error } = useQuery();
 
-    setTodos(updatedTodos);
-  };
+  const [addTodo, { 
+    loading: isAddTodoLoading, 
+    error: isAddTodoError 
+  }] = useAddTodoMutation();
 
-  const addTodo: AddTodo = (newTodoText: string) => {
-    if (newTodoText.trim() !== "") {
-      const newTodo = { 
-        id: todos.length + 1, 
-        text: newTodoText, 
-        complete: false 
-      };
+  const [toggleComplete, { 
+    loading: isToggleLoading, 
+    error: isToggleError 
+  }] = useToggleCompleteMutation();
 
-      setTodos([newTodo].concat(todos)); // will add it at the beggining of the list
-    }
-      // On a single line:
-      // newTodoText.trim() !== "" && setTodos([...todos, { id: todos.length + 1, text: newTodoText, complete: false }]); // will add it at the end of the list
-  };
+  if (error || isAddTodoError || isToggleError) {
+    return <ErrorPage />;
+  }
 
   return (
-    <Box sx={{ 
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column",
         margin: 6 // 48px
       }}
     >
-      <AddTodoForm addTodo={addTodo} />
-      <TodoList todos={todos} toggleComplete={toggleComplete} />
+      <AddTodoForm 
+        isDisabled={loading || isAddTodoLoading || isToggleLoading} 
+        addTodo={addTodo} 
+      />
+      {(loading || isAddTodoLoading) && (
+        <CircularProgress 
+          size={80} 
+          sx={{ 
+            alignSelf: "center", 
+            marginBottom: 2 
+          }} 
+        />)}
+      {todos && <TodoList todos={todos} toggleComplete={toggleComplete} />}
     </Box>
   );
 };

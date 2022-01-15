@@ -24,7 +24,10 @@ export const TodoListItem: React.FC<IProps> = ({
           control={
             <Checkbox
               checked={todo.complete}
-              onChange={() => toggleComplete(todo)}
+              onChange={() => toggleComplete({ 
+                variables: { id: todo.id }, 
+                refetchQueries: ['GetTodos'] 
+              })}
               // onChange={toggleComplete} // This won't work here, because toggleComplete expects an argument => we pass arguments via callbacks
             />
           }

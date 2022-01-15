@@ -12,7 +12,6 @@ export const TodoList: React.FC<IProps> = ({
   todos,
   toggleComplete
 }) => {
-  console.log(todos)
   return (
     <List sx={{
       border: '2px solid',
