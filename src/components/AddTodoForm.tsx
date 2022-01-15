@@ -1,4 +1,8 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import React, { ChangeEvent, useState } from "react";
 import { AddTodo } from "../types";
 
 interface IProps {
@@ -12,18 +16,42 @@ export const AddTodoForm: React.FC<IProps> = ({ addTodo }) => {
     setNewTodo(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleAddTodo = () => {
     addTodo(newTodo);
     setNewTodo("");
   };
 
   return (
-    <form>
-      <input type="text" value={newTodo} onChange={handleChange} />
-      <button type="submit" onClick={handleSubmit}>
-        Add Todo
-      </button>
-    </form>
+    <FormControl 
+      sx={{ 
+        width: "100%",
+        marginBottom: 2 // 16px
+      }}>
+      <Box sx={{ 
+          display: "flex",
+          justifyContent: "center"
+      }}>
+        <OutlinedInput 
+          sx={{ 
+            width: "100%",
+            marginRight: 1 // 8px
+          }}
+          value={newTodo} 
+          placeholder="Enter a todo..." 
+          onChange={handleChange}
+          onKeyPress={(event: React.KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === 'Enter') {
+              handleAddTodo();
+            }
+          }}
+          />
+        <Button 
+          variant="contained" 
+          onClick={handleAddTodo}
+          >
+          Add Todo
+        </Button>
+      </Box>
+    </FormControl>
   );
 };
