@@ -34,8 +34,8 @@ const Home: React.FC = () => {
 
   return (
     <React.Fragment>
-      <TodoList todos={todos} toggleComplete={toggleComplete} />
       <AddTodoForm addTodo={addTodo} />
+      <TodoList todos={todos} toggleComplete={toggleComplete} />
     </React.Fragment>
   );
 };
