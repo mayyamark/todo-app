@@ -20,7 +20,7 @@ export const AddTodoForm: React.FC<IProps> = ({ isDisabled, addTodo }) => {
   const handleAddTodo = () => {
     addTodo({ 
       variables: { text: newTodo },
-      refetchQueries: ['GetTodos']
+      refetchQueries: ['GetAllTodos']
     });
 
     setNewTodo("");

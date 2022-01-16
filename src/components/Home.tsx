@@ -9,8 +9,19 @@ import { TodoList } from "./TodoList";
 const Home: React.FC = () => {
   const { useGetAllTodosQuery, useAddTodoMutation, useToggleCompleteMutation } = useHooks();
 
+  // Same as:
+  // const useGetAllTodosQueryResult = useGetAllTodosQuery();
+  // const todos = useGetAllTodosQueryResult.data;
+  // const loading = useGetAllTodosQueryResult.loading;
+  // const error = useGetAllTodosQueryResult.error;
   const { data: todos, loading, error } = useGetAllTodosQuery();
 
+  // Same as:
+  // const useAddTodoMutationResult = useAddTodoMutation();
+  // const addTodo = useAddTodoMutationResult[0];
+  // const todos = useAddTodoMutationResult[1].data;
+  // const loading = useAddTodoMutationResult[1].loading;
+  // const error = useAddTodoMutationResult[1].error;
   const [addTodo, { 
     loading: isAddTodoLoading, 
     error: isAddTodoError 
