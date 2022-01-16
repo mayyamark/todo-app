@@ -7,9 +7,9 @@ import ErrorPage from "./ErrorPage";
 import { TodoList } from "./TodoList";
 
 const Home: React.FC = () => {
-  const { useQuery, useAddTodoMutation, useToggleCompleteMutation } = useHooks();
+  const { useGetAllTodosQuery, useAddTodoMutation, useToggleCompleteMutation } = useHooks();
 
-  const { data: todos, loading, error } = useQuery();
+  const { data: todos, loading, error } = useGetAllTodosQuery();
 
   const [addTodo, { 
     loading: isAddTodoLoading, 

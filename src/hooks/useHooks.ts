@@ -9,7 +9,7 @@ interface IState {
 }
 
 interface IResult {
-  useQuery: () => IState;
+  useGetAllTodosQuery: () => IState;
   useAddTodoMutation: () => [AddTodo, IState];
   useToggleCompleteMutation: () => [ToggleComplete, IState]
 }
@@ -148,7 +148,7 @@ const useHooks = (): IResult => {
   };
 
   return { 
-    useQuery: () => queryResult, 
+    useGetAllTodosQuery: () => queryResult, 
     useAddTodoMutation: () => [addTodo, addMutationResult],
     useToggleCompleteMutation: () => [toggleComplete, toggleMutationResult],
   }
