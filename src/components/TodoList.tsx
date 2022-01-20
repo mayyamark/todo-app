@@ -16,6 +16,7 @@ export const TodoList: React.FC<IProps> = ({
   return (
     <List sx={{
       border: '2px solid',
+      // borderColor: '#000',
       borderColor: 'primary.main',
       borderRadius: 1, // 4px
       padding: 2, // 16px

@@ -35,7 +35,7 @@ const Home: React.FC = () => {
 
   return (
     <Box sx={{ 
-        margin: 6 // 48px
+        margin: 6 // 6 * 8 = 48px
       }}
     >
       <AddTodoForm addTodo={addTodo} />
