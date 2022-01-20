@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 import { AddTodo } from "../types";
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
   addTodo: AddTodo;
 }
 
-export const AddTodoForm: React.FC<IProps> = ({ isDisabled, addTodo }) => {
+export const AddTodoForm: FC<IProps> = ({ isDisabled, addTodo }) => {
   const [newTodo, setNewTodo] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +48,7 @@ export const AddTodoForm: React.FC<IProps> = ({ isDisabled, addTodo }) => {
           value={newTodo} 
           placeholder="Enter a todo..." 
           onChange={handleChange}
-          onKeyPress={(event: React.KeyboardEvent<HTMLInputElement>) => {
+          onKeyPress={(event: KeyboardEvent<HTMLInputElement>) => {
             if (event.key === 'Enter') {
               handleAddTodo();
             }

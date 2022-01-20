@@ -21,7 +21,7 @@ export const TodoList: React.FC<IProps> = ({
     }}>
       {todos.map(todo => (
         <TodoListItem
-          key={todo.text}
+          key={todo.id}
           todo={todo}
           toggleComplete={toggleComplete}
         />

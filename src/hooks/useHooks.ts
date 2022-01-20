@@ -40,6 +40,7 @@ const useHooks = (): IResult => {
     error: undefined
   });
 
+  // useEffect(() => {}, [])
   // Load initial todos
   useEffect(() => {
     setQueryResult({ ...queryResult, loading: true });
@@ -129,7 +130,7 @@ const useHooks = (): IResult => {
 
       setAddMutationOptions({ 
         todo,
-        refetch: refetchQueries.includes('GetTodos') 
+        refetch: refetchQueries.includes('GetAllTodos') 
       });
     }
   }
@@ -141,7 +142,7 @@ const useHooks = (): IResult => {
       if (todoToUpdate) {
         setToggleMutationOptions({ 
           todo: todoToUpdate,
-          refetch: refetchQueries.includes('GetTodos') 
+          refetch: refetchQueries.includes('GetAllTodos') 
         });
       }
     }
