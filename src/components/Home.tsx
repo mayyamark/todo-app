@@ -4,7 +4,7 @@ import { AddTodo, Todo, ToggleComplete } from "../types";
 import { AddTodoForm } from "./AddTodoForm";
 import { TodoList } from "./TodoList";
 
-const Home: React.FC = () => {
+const Home: React.FC = (): JSX.Element => {
   const [todos, setTodos] = useState<Array<Todo>>(initialTodos);
 
   const toggleComplete: ToggleComplete = (selectedTodo: Todo) => {

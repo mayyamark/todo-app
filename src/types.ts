@@ -6,4 +6,4 @@ export interface Todo {
 
 export type ToggleComplete = (selectedTodo: Todo) => void;
 
-export type AddTodo = (newTodo: string) => void;
+export type AddTodo = (newTodoText: string) => void;
