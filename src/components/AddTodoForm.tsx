@@ -2,10 +2,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
 import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
+import Dialog from "./Dialog";
 import { AddTodo } from "../types";
 
 interface IProps {
@@ -71,25 +69,15 @@ export const AddTodoForm: FC<IProps> = ({ isDisabled, addTodo }) => {
         </Box>
       </FormControl>
       {showDialog && (
-          <Dialog
-            open={showDialog}
-            onClose={handleCloseDialog}
-          >
-            <DialogTitle>
-              Are you sure you wanna add it?
-            </DialogTitle>
-            <DialogActions>
-              <Button onClick={() => setShowDialog(false)}>Cancel</Button>
-              <Button onClick={() => {
-                setShowDialog(false);
-                handleAddTodo();
-              }} autoFocus>
-                OK
-              </Button>
-            </DialogActions>
-          </Dialog>
-      )
-      }
+        <Dialog 
+          showDialog={showDialog} 
+          title="Do you want to add it?" 
+          onClose={handleCloseDialog} 
+          onConfirm={() => { 
+            handleAddTodo();
+            handleCloseDialog();
+          }} />
+        )}
     </>
   );
 };
